@@ -35,7 +35,7 @@ export default class Login extends Component {
 
   render() {
 
-      var rememberImgName = this.state.rememberPassword 
+      var rememberImgName = this.state.rememberPassword
        ? 'not_click': 'click';
       var autoLogginimgName = this.state.autoLoggin ? 'not_click': 'click';
 
@@ -60,7 +60,7 @@ export default class Login extends Component {
               </TextInput>
             </View>
             <View style={styles.item}>
-            
+
               <Image source = {{uri: 'password'}} style = {styles.iconImageStyle}></Image>
               <Text style={styles.textStyle}>密码 /</Text>
                 <TextInput
@@ -91,11 +91,11 @@ export default class Login extends Component {
 
     remenberPasswordClick() {
       // alert('记住密码');
-      this.setState = ({rememberPassword: !this.state.rememberPassword});
+      this.setState({rememberPassword: !this.state.rememberPassword});
     }
     autoLogginClick() {
       // alert('自动登录');
-      this.setState = ({autoLoggin: !this.state.autoLoggin});
+      this.setState({autoLoggin: !this.state.autoLoggin});
     }
 
 
@@ -179,6 +179,6 @@ const styles = StyleSheet.create({
     selectButtons: {
       flexDirection: 'row',
       marginLeft: 20,
-      marginTop: 30     
+      marginTop: 30
     }
 })
