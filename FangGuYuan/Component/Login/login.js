@@ -37,7 +37,7 @@ export default class Login extends Component {
 
       var rememberImgName = this.state.rememberPassword 
        ? 'not_click': 'click';
-      var autoLogginimgName = this.state.rememberPassword ? 'not_click': 'click';
+      var autoLogginimgName = this.state.autoLoggin ? 'not_click': 'click';
 
         return (
           <View style={styles.container}>
