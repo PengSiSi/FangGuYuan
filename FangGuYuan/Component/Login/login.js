@@ -25,11 +25,12 @@ export default class Login extends Component {
 
    constructor(props) {
      super(props);
-     this.userName = ""; // 用户名
-     this.password = ""; // 密码
+
      this.state = {
-     rememberPassword : false , // 记住密码
-     autoLoggin : false  // 自动登录
+        userName : "", // 用户名
+        password : "", // 密码
+        rememberPassword : true , // 记住密码
+        autoLoggin : true  // 自动登录
      }
  }
 
@@ -41,10 +42,12 @@ export default class Login extends Component {
 
         return (
           <View style={styles.container}>
-           <View>
+          {/*logo*/}
+            <View>
               <Image source={{uri: 'logo'}} resizeMode = 'center' style={styles.imgStyle}>
               </Image>
-          </View>
+            </View>
+            {/*账户,密码*/}
             <View style={[styles.item, styles.editViewStyle]}>
              <Image source = {{uri: 'account'}} style = {styles.iconImageStyle}></Image>
              <Text style={styles.textStyle}>账户 /</Text>
@@ -56,7 +59,7 @@ export default class Login extends Component {
                     clearTextOnFocus={true}
                     clearButtonMode="while-editing"
                     style={{flex: 1}}
-                    onChangeText={(input) => this.setState({username: input})}>
+                    onChangeText={(input) => this.setState({userName: input})}>
               </TextInput>
             </View>
             <View style={styles.item}>
@@ -70,19 +73,20 @@ export default class Login extends Component {
                     clearTextOnFocus={true}
                     clearButtonMode="while-editing"
                     style={{flex: 1}}
-                    onChangeText={(input) => this.setState({userpwd: input})}></TextInput>
+                    onChangeText={(input) => this.setState({password: input})}></TextInput>
             </View>
+            {/*记住密码,自动登录*/}
             <View style = {styles.selectButtons}>
-
               <SelectButton name = '记住密码' imageName = {rememberImgName} onPressCallback = {this.remenberPasswordClick.bind(this
                 )}>
               </SelectButton>
               <SelectButton name = '自动登录' imageName = {autoLogginimgName} onPressCallback = {this.autoLogginClick.bind(this)}>
               </SelectButton>
             </View>
+            {/*登录按钮*/}
             <TouchableHighlight style={styles.login}
                                 underlayColor='transparent'
-                                onPress={()=>this.loginInMainpage()} style = {styles.loginButtonView}>
+                                onPress={()=>this.jumpToMainPage()} style = {styles.loginButtonView}>
                 <Text style={styles.loginText}>登录</Text>
             </TouchableHighlight>
         </View>
@@ -98,25 +102,20 @@ export default class Login extends Component {
       this.setState({autoLoggin: !this.state.autoLoggin});
     }
 
+    // setLoginName(input) {
+    //     this.setState = {inputName: input}
+    // }
 
-  loginInMainpage() {
+    // setLoginPwd(input) {
+    //     this.setState = {inputPwd: input}
+    // }
+
+  // 进入主页
+  jumpToMainPage() {
     // alert('登录按钮被点击');
-    const { navigator } = this.props;
-        if (navigator) {
-          navigator.push({
-            name : 'LoginSuccess',
-            component : LogDetail,
-          });
-        }
+    const { navigate } = this.props.navigation;
+    navigate('HomeScreen');
   }
-
-   setLoginName(input) {
-        this.setState = {inputName: input}
-    }
-
-    setLoginPwd(input) {
-        this.setState = {inputPwd: input}
-    }
 }
 
 const styles = StyleSheet.create({
@@ -124,6 +123,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 
+    // 图片style
     imgStyle: {
       flexDirection: 'row',
       height:100,
@@ -144,12 +144,14 @@ const styles = StyleSheet.create({
         color: 'black',
         marginRight: 10
     },
+    // 登录按钮
     login: {
         height: 40,
         backgroundColor: 'green',
         margin: 20,
         justifyContent: 'center',
     },
+    // 登录文字
     loginText: {
         fontSize: 17,
         alignSelf: 'center',
@@ -157,23 +159,24 @@ const styles = StyleSheet.create({
         borderRadius: 5
     },
 
-  loginButtonView: {
-      margin: 10,
-      height:50,
-      backgroundColor: 'green',
-      borderRadius:8,
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems:'center',
-    },
+    loginButtonView: {
+        margin: 10,
+        height:50,
+        backgroundColor: 'green',
+        borderRadius:8,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems:'center',
+      },
     iconImageStyle: {
-      width: 20,
-      height: 20,
+      width: 21,
+      height: 23,
       marginRight: 10
     },
 
     editViewStyle: {
-      marginTop: 20
+      marginTop: 20,
+      justifyContent: 'center',
     },
 
     selectButtons: {

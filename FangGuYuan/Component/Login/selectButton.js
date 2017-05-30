@@ -17,7 +17,7 @@ export default class EditView extends Component {
   render() {
     return (
       <TouchableOpacity onPress={this.props.onPressCallback} style={styles.containStyle}>
-        <Image source = {{uri: this.props.imageName }} style = {styles.selectImgStyle}></Image>
+        <Image source = {{uri: this.props.imageName}} style = {styles.selectImgStyle}></Image>
         <Text style={styles.textStyle} >
             {this.props.name}
         </Text>
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     selectImgStyle: {
         width: 15,
         height: 15,
-        margin: 5,
+        margin: 3,
         alignSelf: 'center'  // 设置两个子控件对齐,先设置父级属性为 row
     },
 

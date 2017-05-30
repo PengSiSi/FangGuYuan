@@ -12,13 +12,17 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 
 import Util from './../Util/util';
 import Login from './../Login/login';
 
+import { NavigatorIOS } from 'react-native';
+import {Actions, Scene, Router} from 'react-native-router-flux';
+
 export default class Guide extends Component {
+
   render() {
     return (
       <View style = {styles.container}>
@@ -34,8 +38,21 @@ export default class Guide extends Component {
 
   jumpLogginPage() {
     alert('进入登录页面');
+    const { navigate } = this.props.navigation;
+        navigate('LoginScreen');
   }
+
+   // 复杂的操作:定时器\网络请求
+    componentDidMount(){
+        // 定时: 隔2s切换到登录页
+        setTimeout(()=>{
+            // 页面的切换
+        const { navigate } = this.props.navigation;
+        navigate('LoginScreen');
+        }, 1500);
+    }
 }
+
 
 const styles = StyleSheet.create({
   container: {
